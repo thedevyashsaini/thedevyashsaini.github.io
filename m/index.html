@@ -1,10 +1,11 @@
-<!DOCTYPE HTML>
 <html>
+
 <head>
   <title>
     TheDevyash || Link-In-Bio
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <style>
     @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap);
 
@@ -27,6 +28,18 @@
 
     svg {
       fill: #ffffff
+    }
+
+    #preloader {
+      background: url("/e3a.gif") no-repeat center;
+      background-size: 15%;
+      filter: invert(100%);
+      background-color: #fff;
+      height: -webkit-fill-available;
+      width: 100%;
+      position: fixed;
+      cursor: pointer;
+      z-index: 999999;
     }
 
     .main {
@@ -241,6 +254,7 @@
   </style>
 </head>
 <body>
+  <div id="preloader"></div>
   <div class="main">
     <div class="share">
       <div class="icon">
@@ -364,6 +378,9 @@
   </div>
 
   <script>
+    window.addEventListener("load", function() {
+      $("#preloader").fadeOut(100); 
+    });
     var sharebtn = document.getElementsByClassName("share")[0]
     var text = 'https://thedevyashsaini.github.io/m/';
     function mobileDevice() {
