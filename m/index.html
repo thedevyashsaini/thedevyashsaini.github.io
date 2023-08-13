@@ -1,5 +1,5 @@
+<!DOCTYPE HTML>
 <html>
-
 <head>
   <title>
     TheDevyash || Link-In-Bio
@@ -177,6 +177,33 @@
       cursor: pointer;
     }
 
+    .anim {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background: #eee;
+      border-radius: 36px;
+      opacity: 0.3;
+      transform: scale(0);
+    }
+
+    .button:hover > .anim {
+      animation: click 0.6s;
+    }
+
+    @keyframes click {
+      0% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
     .logo {
       height: 100%;
       align-items: center;
@@ -290,9 +317,9 @@
       <h3>Let's Connect</h3>
       <h4>and create something amazing together.</h4>
       <div class="button" onclick="window.location = 'https://thedevyashsaini.github.io/'">
+        <div class="anim"></div>
         <div class="logo">
-          <svg viewBox="0 0 201 200" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"
-            aria-label="beacons;source=beacons classic">
+          <svg viewBox="0 0 201 200" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M77.7416 98.5094C99.3336 98.5094 116.837 81.0409 116.837 59.4928C116.837 37.9445 99.3336 20.4761 77.7416 20.4761C56.1496 20.4761 38.6459 37.9445 38.6459 59.4928C38.6459 81.0409 56.1496 98.5094 77.7416 98.5094Z">
             </path>
@@ -312,9 +339,17 @@
         </div>
         <div class="btnTxt">Portfolio</div>
       </div>
-      <div class="button" onclick="window.location = 'https://in.linkedin.com/in/thedevyashsaini/'">
+      <div class="button" onclick="window.location = 'https://thedevyashsaini.github.io/#projects'">
+        <div class="anim"></div>
         <div class="logo">
-          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
+        </div>
+        <div class="btnTxt">Projects</div>
+      </div>
+      <div class="button" onclick="window.location = 'https://in.linkedin.com/in/thedevyashsaini/'">
+        <div class="anim"></div>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
           </svg>
