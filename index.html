@@ -31,7 +31,7 @@
   <link rel="manifest" href="/site.webmanifest">
 <script>
        function onSubmit(token) {
-         document.getElementById("contactForm").submit();
+         document.getElementById("sbmtbtn").click();
        }
      </script>
 </head>
@@ -318,6 +318,7 @@
               <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
             </div>
             <div class="button-area">
+              <button type="submit" id="sbmtbtn" hidden></button>
               <button class="g-recaptcha" data-sitekey="6LfKWaUnAAAAAJjemp4YsEUe5UAKYEvc5TdiCW_H" data-callback="onSubmit">Send Message</button>
             </div>
           </form>
