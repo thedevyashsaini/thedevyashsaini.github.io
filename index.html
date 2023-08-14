@@ -369,6 +369,8 @@
   <script src="script2.js"></script>
     <script>
       function validateForm(token) {
+          document.getElementById("contactForm").submit();
+      }
           console.log(token);
           const name = document.getElementsByName('name').value;
           const email = document.getElementsByName('email').value;
@@ -394,8 +396,6 @@
           }
           
           formErr.style.display = 'none';
-          document.getElementById("contactForm").submit();
-      }
      </script>
 </body>
 
