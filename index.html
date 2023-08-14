@@ -37,7 +37,22 @@
 </head>
 
 <body>
+  <script>
+    function getCookieValue(cookieName) {
+      const cookies = document.cookie.split("; ");
+      for (const cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === cookieName) {
+          return value;
+        }
+      }
+      return false; // Cookie not found
+    }
 
+    if(window.innerWidth <= 565 && getCookieValue("mobileVisited") !== "true") {
+      window.location = "/m/";
+    }
+  </script>
   <div id="gradiant" hidden></div>
   <div id="preogressbar" hidden></div>
 
