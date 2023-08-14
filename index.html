@@ -50,8 +50,9 @@
     }
 
     if(window.innerWidth <= 565 && getCookieValue("mobileVisited") !== "true") {
-      alert(getCookieValue("mobileVisited"));
-      alert(window.innerWidth);
+      const farFuture = new Date("2100-12-31");
+      document.cookie = `mobileVisited=true; expires=${farFuture.toUTCString()}`;
+      window.location = "/m/";
     }
   </script>
   <div id="gradiant" hidden></div>
