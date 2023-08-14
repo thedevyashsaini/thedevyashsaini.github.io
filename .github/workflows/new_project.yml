@@ -2,6 +2,16 @@ name: Add Project to Index
 
 on:
   workflow_dispatch:  # Allow manual triggering
+    inputs:
+      title:
+        description: 'Title of the new project'
+        required: true
+      image:
+        description: 'Image link for the new project'
+        required: true
+      description:
+        description: 'Description for the new project'
+        required: true
 
 jobs:
   add_project:
