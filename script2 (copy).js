@@ -133,5 +133,56 @@ function windowDimension() {
 if (window.ScrollY) {
   $(".navbar").addClass("sticky");
 }
+
 windowDimension();
 window.addEventListener("resize", windowDimension);
+
+function onSubmit(token) {
+  var response = grecaptcha.getResponse();
+  if(response) {
+    document.getElementById("captchaBtn").remove();
+    const button = document.createElement("button");
+    button.type = "submit";
+    button.id = "submitBtn";
+    button.textContent = "Send Message";
+    const buttonArea = document.querySelector(".button-area");
+    buttonArea.insertBefore(button, buttonArea.firstChild);
+    button.click();
+  }
+ }
+ document.getElementById('contactForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const formErr = document.getElementById('formErr');
+    const btn = document.getElementById("submitBtn");
+                                        
+    if(!btn) {
+      formErr.textContent = 'Nice try!';
+      formErr.style.display = 'block';
+      return;
+    }
+    const name = document.getElementsByName('name')[0].value;
+    const email = document.getElementsByName('email')[0].value;
+    const subject = document.getElementsByName('subject')[0].value;
+    const message = document.getElementsByName('message')[0].value;
+
+   
+    if (!name || !email || !subject || !message) {
+      formErr.textContent = 'All fields are required.';
+      formErr.style.display = 'block';
+      return;
+    }
+    
+    const domain = email.split('@')[1];
+    const response = await fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
+    const data = await response.json();
+    
+    if (!data.valid) {
+      formErr.textContent = 'Invalid email domain.';
+      formErr.style.display = 'block';
+      return;
+    }
+    
+    formErr.style.display = 'none';
+    event.target.submit();
+ });
