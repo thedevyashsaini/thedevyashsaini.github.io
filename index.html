@@ -364,7 +364,8 @@
   <script src="script2.js"></script>
     <script>
     function onSubmit(token) {
-      if(grecaptcha.getResponse()) {
+      var response = grecaptcha.getResponse();
+      if(response) {
         document.getElementsById("captchaBtn").remove();
         const button = document.createElement("button");
         button.type = "submit";
@@ -380,7 +381,7 @@
         console.log("in");
         
         const formErr = document.getElementById('formErr');
-        const btn = document.getElementById("submitBtn);
+        const btn = document.getElementById("submitBtn");
                                             
         if(!btn) {
           formErr.textContent = 'Nice try!';
