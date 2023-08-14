@@ -1,0 +1,39 @@
+name: Add Project to Index
+
+on:
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  add_project:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Add Project Card
+      run: |
+        # Get the input values
+        title="${{ inputs.title }}"
+        image="${{ inputs.image }}"
+        description="${{ inputs.description }}"
+        
+        # Create the new project card HTML
+        new_project_card="<div class=\"card\">
+          <div class=\"box\">
+            <img src=\"$image\" alt=\"img\">
+            <div class=\"text\">$title</div>
+            <p>$description</p>
+            <a href=\"#\" class=\"project\" target=\"_blank\">View project</a>
+          </div>
+        </div>"
+
+        # Replace the placeholder with the new project card HTML
+        sed -i "s|<!-- NEW_PROJECT_PLACEHOLDER -->|$new_project_card\n<!-- NEW_PROJECT_PLACEHOLDER -->|" index.html
+
+    - name: Commit Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -a -m "new project card ${{ inputs.image }}" || true
+        git push
