@@ -30,20 +30,20 @@ jobs:
 
         # Create the new project card HTML
         new_project_card="<div class=\"card\">
-          <div class=\"box\">
-            <img src=\"$image\" alt=\"img\">
-            <div class=\"text\">$title</div>
-            <p>$description</p>
-            <a href=\"#\" class=\"project\" target=\"_blank\">View project</a>
-          </div>
-        </div>"
+                  <div class=\"box\">
+                    <img src=\"$image\" alt=\"img\">
+                    <div class=\"text\">$title</div>
+                    <p>$description</p>
+                    <a href=\"#\" class=\"project\" target=\"_blank\">View project</a>
+                  </div>
+                </div>"
         
         # Replace the placeholder with the new project card HTML
-        sed -i "s|<!-- NEW_PROJECT_PLACEHOLDER -->|${new_project_card//$'\n'/\\n}|g" index.html
+        sed -i "s|<!-- NEW_PROJECT_PLACEHOLDER -->|${new_project_card//$'\n'/\\n}\n<!-- NEW_PROJECT_PLACEHOLDER -->|g" index.html
 
     - name: Commit Changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -a -m "new project card ${{ inputs.title }}" || true
+        git commit -a -m "new project card '${{ inputs.title }}'" || true
         git push
