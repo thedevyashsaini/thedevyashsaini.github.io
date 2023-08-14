@@ -315,7 +315,7 @@
             </div>
             <div class="text" id="formErr" style="color:crimson;font-size:15px;text-align:center;"></div>
             <div class="button-area">
-<!--               <button type="submit">Send Message</button> -->
+              <button type="submit" hidden="true" id="submitBtn">Send Message</button>
               <button class="g-recaptcha" data-sitekey="6LfKWaUnAAAAAJjemp4YsEUe5UAKYEvc5TdiCW_H" data-callback="onSubmit">Send Message</button>
             </div>
           </form>
@@ -364,7 +364,7 @@
   <script src="script2.js"></script>
     <script>
     function onSubmit(token) {
-        document.getElementById("contactForm").submit();
+        document.getElementById("submitBtn").click();
      }
      document.getElementById('contactForm').addEventListener('submit', (event) => {
        event.preventDefault();
