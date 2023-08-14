@@ -30,8 +30,33 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 <script>
-       function onSubmit(token) {
-         document.getElementById("contactForm").submit();
+      function onSubmit(token) {
+         console.log("in");
+          const name = document.getElementsByName('name').value;
+          const email = document.getElementsByName('email').value;
+          const subject = document.getElementsByName('subject').value;
+          const message = document.getElementsByName('message').value;
+          
+          const domain = email.split('@')[1];
+          const response = fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
+          const data = response.json();
+          
+          const formErr = document.getElementById('formErr');
+          
+          if (!name || !email || !subject || !message) {
+            formErr.textContent = 'All fields are required.';
+            formErr.style.display = 'block';
+            return;
+          }
+          
+          if (!data.valid) {
+            formErr.textContent = 'Invalid email domain.';
+            formErr.style.display = 'block';
+            return;
+          }
+          
+          formErr.style.display = 'none';
+          document.getElementById("contactForm").submit();
        }
      </script>
 </head>
@@ -366,37 +391,6 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="script.js"></script>
   <script src="script2.js"></script>
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      
-      const name = document.getElementsByName('name').value;
-      const email = document.getElementsByName('email').value;
-      const subject = document.getElementsByName('subject').value;
-      const message = document.getElementsByName('message').value;
-      
-      const domain = email.split('@')[1];
-      const response = await fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
-      const data = await response.json();
-      
-      const formErr = document.getElementById('formErr');
-      
-      if (!name || !email || !subject || !message) {
-        formErr.textContent = 'All fields are required.';
-        formErr.style.display = 'block';
-        return;
-      }
-      
-      if (!data.valid) {
-        formErr.textContent = 'Invalid email domain.';
-        formErr.style.display = 'block';
-        return;
-      }
-      
-      formErr.style.display = 'none';
-      event.target.submit();
-    });
-  </script>
 </body>
 
 </html>
