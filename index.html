@@ -301,22 +301,22 @@
           <form action="https://formspree.io/f/myyqebgv" id="contactForm" method="POST">
             <div class="fields">
               <div class="field name">
-                <input type="text" placeholder="Name" name="name" required>
+                <input type="text" placeholder="Name" name="name">
               </div>
               <div class="field email">
-                <input type="email" placeholder="Email" name="email" required>
+                <input type="email" placeholder="Email" name="email">
               </div>
             </div>
             <div class="field">
-              <input type="text" placeholder="Subject" name="subject" required>
+              <input type="text" placeholder="Subject" name="subject">
             </div>
             <div class="field textarea">
-              <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
+              <textarea cols="30" rows="10" placeholder="Message.." name="message"></textarea>
             </div>
             <div class="text" id="formErr" style="color:crimson;font-size:15px;text-align:center;"></div>
             <div class="button-area">
-              <button type="submit" hidden="true" id="submitBtn">Send Message</button>
-              <button class="g-recaptcha" data-sitekey="6LfKWaUnAAAAAJjemp4YsEUe5UAKYEvc5TdiCW_H" data-callback="onSubmit">Send Message</button>
+              <button type="submit" style="display:none;" id="submitBtn">Send Message</button>
+              <button class="g-recaptcha" id="captchaBtn" data-sitekey="6LfKWaUnAAAAAJjemp4YsEUe5UAKYEvc5TdiCW_H" data-callback="onSubmit">Send Message</button>
             </div>
           </form>
         </div>
@@ -364,11 +364,52 @@
   <script src="script2.js"></script>
     <script>
     function onSubmit(token) {
-        document.getElementById("submitBtn").click();
+      if(grecaptcha.getResponse()) {
+        document.getElementsById("captchaBtn").remove();
+        const button = document.createElement("button");
+        button.type = "submit";
+        button.id = "submitBtn";
+        button.textContent = "Send Message";
+        const buttonArea = document.querySelector(".button-area");
+        buttonArea.insertBefore(button, buttonArea.firstChild);
+        button.click();
+      }
      }
      document.getElementById('contactForm').addEventListener('submit', (event) => {
-       event.preventDefault();
-       console.log("validating");
+        event.preventDefault();                        
+        console.log("in");
+        
+        const formErr = document.getElementById('formErr');
+        const btn = document.getElementById("submitBtn);
+                                            
+        if(!btn) {
+          formErr.textContent = 'Nice try!';
+          formErr.style.display = 'block';
+          return;
+        }
+        const name = document.getElementsByName('name')[0].value;
+        const email = document.getElementsByName('email')[0].value;
+        const subject = document.getElementsByName('subject')[0].value;
+        const message = document.getElementsByName('message')[0].value;
+        
+        const domain = email.split('@')[1];
+        const response = fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
+        const data = response.json();
+        
+        if (!name || !email || !subject || !message) {
+          formErr.textContent = 'All fields are required.';
+          formErr.style.display = 'block';
+          return;
+        }
+        
+        if (!data.valid) {
+          formErr.textContent = 'Invalid email domain.';
+          formErr.style.display = 'block';
+          return;
+        }
+        
+        formErr.style.display = 'none';
+        event.target.submit();
      });
   </script>
 </body>
