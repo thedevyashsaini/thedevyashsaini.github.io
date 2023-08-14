@@ -45,5 +45,5 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -a -m "new project card ${{ inputs.image }}" || true
+        git commit -a -m "new project card ${{ inputs.title }}" || true
         git push
