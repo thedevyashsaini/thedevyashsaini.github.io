@@ -29,11 +29,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <script>
-    function onSubmit(token) {
-        validateForm(token);
-     }
-  </script>
 </head>
 
 <body>
@@ -368,35 +363,14 @@
   <script src="script.js"></script>
   <script src="script2.js"></script>
     <script>
-      function validateForm(token) {
-          document.getElementById("contactForm").submit();
-      }
-          console.log(token);
-          const name = document.getElementsByName('name').value;
-          const email = document.getElementsByName('email').value;
-          const subject = document.getElementsByName('subject').value;
-          const message = document.getElementsByName('message').value;
-          
-          const domain = email.split('@')[1];
-          const response = fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
-          const data = response.json();
-          
-          const formErr = document.getElementById('formErr');
-          
-          if (!name || !email || !subject || !message) {
-            formErr.textContent = 'All fields are required.';
-            formErr.style.display = 'block';
-            return;
-          }
-          
-          if (!data.valid) {
-            formErr.textContent = 'Invalid email domain.';
-            formErr.style.display = 'block';
-            return;
-          }
-          
-          formErr.style.display = 'none';
-     </script>
+    function onSubmit(token) {
+        document.getElementById("contactForm").submit();
+     }
+     document.getElementById('contactForm').addEventListener('submit', (event) => {
+       event.preventDefault();
+       console.log("validating");
+     });
+  </script>
 </body>
 
 </html>
