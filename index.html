@@ -29,6 +29,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
+<script>
+       function onSubmit(token) {
+         document.getElementById("contactForm").submit();
+       }
+     </script>
 </head>
 
 <body>
@@ -296,7 +301,7 @@
               <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
             </div>
             <div class="button-area">
-              <button class="g-recaptcha" data-sitekey="6Le-VaUnAAAAAMbF6GLJykPRNVTlJf__HAiEsCKl" data-callback='onSubmit' data-action='submit'>Send message</button>
+              <button class="g-recaptcha" data-sitekey="6LfKWaUnAAAAAKGP5MoDfHO50eEYxyfA9UJyrR9y" data-callback="onSubmit">Send Message</button>
             </div>
           </form>
         </div>
@@ -342,11 +347,6 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="script.js"></script>
   <script src="script2.js"></script>
-  <script>
-    function onSubmit(token) {
-       document.getElementById("contactForm").submit();
-     }
-  </script>
 </body>
 
 </html>
