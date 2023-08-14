@@ -318,6 +318,7 @@
             <div class="field textarea">
               <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
             </div>
+            <div class="text" id="formErr" style="color:crimson;font-size:15px;text-align:center;"></div>
             <div class="button-area">
               <button class="g-recaptcha" data-sitekey="6LfKWaUnAAAAAJjemp4YsEUe5UAKYEvc5TdiCW_H" data-callback="onSubmit">Send Message</button>
             </div>
@@ -365,6 +366,37 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="script.js"></script>
   <script src="script2.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      const name = document.getElementsByName('name').value;
+      const email = document.getElementsByName('email').value;
+      const subject = document.getElementsByName('subject').value;
+      const message = document.getElementsByName('message').value;
+      
+      const domain = email.split('@')[1];
+      const response = await fetch(`https://api-archive.devyashsaini.repl.co/check-email-domain?domain=${domain}`);
+      const data = await response.json();
+      
+      const formErr = document.getElementById('formErr');
+      
+      if (!name || !email || !subject || !message) {
+        formErr.textContent = 'All fields are required.';
+        formErr.style.display = 'block';
+        return;
+      }
+      
+      if (!data.valid) {
+        formErr.textContent = 'Invalid email domain.';
+        formErr.style.display = 'block';
+        return;
+      }
+      
+      formErr.style.display = 'none';
+      event.target.submit();
+    });
+  </script>
 </body>
 
 </html>
