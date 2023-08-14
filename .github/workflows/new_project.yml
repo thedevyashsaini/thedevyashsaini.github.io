@@ -39,7 +39,7 @@ jobs:
                 </div>"
         
         # Replace the placeholder with the new project card HTML
-        sed -i "s|<!-- NEW_PROJECT_PLACEHOLDER -->|${new_project_card//$'\n'/\\n}\n<!-- NEW_PROJECT_PLACEHOLDER -->|g" index.html
+        sed -i "s|<!-- NEW_PROJECT_PLACEHOLDER -->|${new_project_card//$'\n'/\\n}\n        <!-- NEW_PROJECT_PLACEHOLDER -->|g" index.html
 
     - name: Commit Changes
       run: |
