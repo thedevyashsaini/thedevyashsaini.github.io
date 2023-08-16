@@ -140,7 +140,7 @@ window.addEventListener("resize", windowDimension);
 function onSubmit(token) {
   var response = grecaptcha.getResponse();
   if(response) {
-    document.getElementById("captchaBtn").remove();
+    document.getElementById("captchaBtn").style.display = "none";
     const button = document.createElement("button");
     button.type = "submit";
     button.id = "submitBtn";
