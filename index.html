@@ -59,9 +59,9 @@
       return false; // Cookie not found
     }
 
-    if(window.innerWidth <= 565 && getCookieValue("mobileVisited") !== "true") {
+    if(window.innerWidth <= 565 && getCookieValue("mobileVisitedd") !== "true") {
       const farFuture = new Date("2100-12-31");
-      document.cookie = `mobileVisited=true; expires=${farFuture.toUTCString()}`;
+      document.cookie = `mobileVisitedd=true; expires=${farFuture.toUTCString()}`;
       window.location = "/m/?redirectBack";
     }
   </script>
