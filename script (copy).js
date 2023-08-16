@@ -15,6 +15,11 @@ $(document).ready(function() {
     if (this.scrollY > 500) {
       $('.scroll-up-btn').addClass("show");
     } else {
+      if (this.scrollY > 200) {
+        $('.grecaptcha-badge').css("z-index", 99);
+      } else {
+        $('.grecaptcha-badge').css("z-index", -1);
+      }
       $('.scroll-up-btn').removeClass("show");
     }
   });
