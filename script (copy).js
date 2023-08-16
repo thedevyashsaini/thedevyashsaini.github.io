@@ -15,7 +15,7 @@ $(document).ready(function() {
     if (this.scrollY > 500) {
       $('.scroll-up-btn').addClass("show");
     } else {
-      if (this.scrollY > 200) {
+      if (this.scrollY > 170) {
         $('.grecaptcha-badge').css("z-index", 99);
       } else {
         $('.grecaptcha-badge').css("z-index", -1);
