@@ -511,7 +511,7 @@ section .title::after {
   pointer-events: none;
 
 }
-
+/* 
 .container .box span::before {
   content: '';
   position: absolute;
@@ -526,7 +526,7 @@ section .title::after {
   transition: 0.5s;
   animation: animate 2s ease-in-out infinite;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 05);
-}
+} */
 
 .container .box:hover #first::before {
   top: -50px;
